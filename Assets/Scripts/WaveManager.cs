@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,6 +15,19 @@ public class WaveManager : MonoBehaviour
     void Start()
     {
         mytext = GetComponent<Text>();
+    }
+
+    void Update()
+    {
+        NextWaveTrigger();
+    }
+
+    private void NextWaveTrigger()
+    {
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            next_wave();
+        }
     }
 
     public void current_wave()
