@@ -45,7 +45,7 @@ public class WaveManager : MonoBehaviour
     {
         for (int i = 0; i < spawners.Count; i++)
         {
-            Instantiate(spawnitems[0], spawners[i].transform.position, spawners[i].transform.rotation);
+            Instantiate(spawnitems[0], spawners[i].transform.position + new Vector3(0,5,0), spawners[i].transform.rotation);
         }
         
     }
