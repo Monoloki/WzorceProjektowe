@@ -2,12 +2,14 @@
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] Camera camera;
-    [SerializeField] Rigidbody rigidbody;
+    [SerializeField] Camera cam;
+    [SerializeField] Rigidbody rb;
 
-    public float speed = 6;
+    public float speed = 8;
     public float rotationSpeed = 2;
-    public float jumpHeight = 8;
+    public float jumpHeight = 6;
+
+    int hp = 5;
 
     private void Start()
     {
@@ -20,13 +22,17 @@ public class PlayerController : MonoBehaviour
         HandleHorizontalRotationl();
         HandleVerticalRotationl();
         HandleJump();
+        if (hp == 0)
+        {
+            Debug.Log("You're looser");
+        }
     }
 
     private void HandleJump()
     {
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
-            rigidbody.AddForce(Vector3.up*jumpHeight,ForceMode.VelocityChange);
+            rb.AddForce(Vector3.up*jumpHeight,ForceMode.VelocityChange);
         }
     }
 
@@ -38,9 +44,9 @@ public class PlayerController : MonoBehaviour
     private void HandleVerticalRotationl()
     {
         var input = Input.GetAxis("Mouse Y");
-        var rotation = camera.transform.localRotation.eulerAngles;
+        var rotation = cam.transform.localRotation.eulerAngles;
         rotation.x -= input* rotationSpeed;
-        camera.transform.localRotation = Quaternion.Euler(rotation);
+        cam.transform.localRotation = Quaternion.Euler(rotation);
     }
 
     private void HandleHorizontalRotationl()
@@ -59,7 +65,7 @@ public class PlayerController : MonoBehaviour
         {
             newVelocity *= 2;
         }
-        newVelocity.y = rigidbody.velocity.y;
+        newVelocity.y = rb.velocity.y;
 
         var controlFactor = Time.deltaTime * 10;
         if (!IsGrounded())
@@ -67,6 +73,15 @@ public class PlayerController : MonoBehaviour
             controlFactor /= 2;
         }
 
-        rigidbody.velocity = Vector3.Lerp(rigidbody.velocity, newVelocity, controlFactor);
+        rb.velocity = Vector3.Lerp(rb.velocity, newVelocity, controlFactor);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            hp--;
+            Debug.Log("Player HP:" + hp);
+        }
     }
 }

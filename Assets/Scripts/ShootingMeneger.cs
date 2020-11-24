@@ -1,15 +1,15 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ShootingMeneger : MonoBehaviour
 {
     public GameObject laser;
-    public GameObject camera;
+    public GameObject cam;
+    public GameObject carabine;
     private float fireRate = 0.15F;
     private float nextFire = 0.0F;
 
     void Update()
-    {
+    { 
         Shoot();
     }
 
@@ -18,8 +18,8 @@ public class ShootingMeneger : MonoBehaviour
         if (Input.GetMouseButton(0) && Time.time > nextFire)
         {
             nextFire = Time.time + fireRate;
-            Debug.Log("Shoot");
-            Instantiate(laser, transform.position + new Vector3(1, 0, 1), camera.transform.rotation);
+            //Debug.Log("Shoot");
+            Instantiate(laser, carabine.transform.position, cam.transform.rotation);
         }
     }
 }
