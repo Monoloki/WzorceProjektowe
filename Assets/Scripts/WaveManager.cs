@@ -17,11 +17,6 @@ public class WaveManager : MonoBehaviour
 
     void Update()
     {
-        NextWaveTrigger();
-    }
-
-    private void NextWaveTrigger()
-    {
         if (Input.GetKeyDown(KeyCode.N))
         {
             next_wave();
