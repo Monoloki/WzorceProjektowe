@@ -1,19 +1,23 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] Camera cam;
     [SerializeField] Rigidbody rb;
+    public Text mytext;
+    public GameObject lose;
 
     public float speed = 8;
     public float rotationSpeed = 2;
     public float jumpHeight = 6;
 
-    int hp = 5;
+    int hp = 15;
 
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        mytext.text = "HEALTH:" + hp;
     }
 
     void Update()
@@ -25,6 +29,8 @@ public class PlayerController : MonoBehaviour
         if (hp == 0)
         {
             Debug.Log("You're looser");
+            lose.SetActive(true);
+            Time.timeScale = 0;
         }
     }
 
@@ -81,6 +87,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
         {
             hp--;
+            mytext.text = "HEALTH:" + hp;
             Debug.Log("Player HP:" + hp);
         }
     }

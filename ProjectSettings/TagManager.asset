@@ -8,6 +8,7 @@ TagManager:
   - Laser
   - Enemy
   - Waypoint
+  - Lose
   layers:
   - Default
   - TransparentFX
