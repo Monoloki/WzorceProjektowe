@@ -3,11 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public string MainSceneName;
-
     public void PlayGame()
     {
-        SceneManager.LoadScene(MainSceneName);
+        SceneManager.LoadScene(1);
         Debug.Log("MainSceneLoaded");
     }
 

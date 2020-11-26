@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Jumping_enemy : MonoBehaviour
 {
@@ -25,7 +23,7 @@ public class Jumping_enemy : MonoBehaviour
         // idzie do gracza jak jest dalej niż distance
         if (direction.magnitude > distance)
         {
-            Debug.Log("Idzie");
+            //Debug.Log("Idzie");
             direction.Normalize();
             rb.MovePosition(direction* force2);
         }
@@ -35,12 +33,7 @@ public class Jumping_enemy : MonoBehaviour
             Debug.Log("Skacze");
             direction.Normalize();
             jump();
-        }
-            
-
-        
-        
-        
+        }  
     }
 
     public void jump() 

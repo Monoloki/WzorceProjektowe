@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class PlayerController : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         mytext.text = "HEALTH:" + hp;
+        Time.timeScale = 1;
     }
 
     void Update()
@@ -26,11 +28,20 @@ public class PlayerController : MonoBehaviour
         HandleHorizontalRotationl();
         HandleVerticalRotationl();
         HandleJump();
+        Lose();
+    }
+
+    private void Lose()
+    {
         if (hp == 0)
         {
             //Debug.Log("You're looser");
             lose.SetActive(true);
             Time.timeScale = 0;
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                SceneManager.LoadScene(1);
+            }
         }
     }
 

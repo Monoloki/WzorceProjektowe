@@ -14,6 +14,11 @@ public class NexusMeneger : MonoBehaviour
 
     void Update()
     {
+        Lose();
+    }
+
+    private void Lose()
+    {
         if (hp == 0)
         {
             //Debug.Log("You're looser");
