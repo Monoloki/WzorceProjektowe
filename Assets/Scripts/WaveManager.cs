@@ -8,7 +8,7 @@ public class WaveManager : MonoBehaviour
     public List<GameObject> spawners = new List<GameObject>();
     Text mytext;
     int waveNumber = 0;
-    int i;
+    public float nextspawn = 0.0F;
 
     void Start()
     {
@@ -34,22 +34,16 @@ public class WaveManager : MonoBehaviour
     {
         for (int i = 0; i < spawners.Count; i++)
         {
-            spawn_mob1();
+            spawn_mob(4,2,i);  //ilosc , id moba
         }
     }
 
-    public void spawn_mob1()
+    public void spawn_mob(int amount, int number, int a)
     {
-            Instantiate(spawnitems[0], spawners[i].transform.position + new Vector3(0, 0, -10), spawners[i].transform.rotation);
+            for (int j = 0; j < amount; j++)
+            {
+                Instantiate(spawnitems[number], spawners[a].transform.position + new Vector3(0, 0, -10), spawners[a].transform.rotation);
+            }       
     }
 
-    public void spawn_mob2()
-    {
-            Instantiate(spawnitems[1], spawners[i].transform.position + new Vector3(0, 0, -10), spawners[i].transform.rotation);
-    }
-
-    public void spawn_mob3()
-    {
-            Instantiate(spawnitems[2], spawners[i].transform.position + new Vector3(0, 0, -10), spawners[i].transform.rotation);
-    }
 }

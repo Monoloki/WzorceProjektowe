@@ -14,22 +14,21 @@ public class BasicUnit : MonoBehaviour
         theAgent = GetComponent<NavMeshAgent>();
         waypoint1 = GameObject.Find("waypoint_1");  
         finish = GameObject.Find("nexus");
-    }
 
-
-    void Update()
-    {
         if (pivotpoint == 0)
         {
             theAgent.SetDestination(waypoint1.transform.position);
-            pivotpoint = 1;
         }
+
+
     }
+
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "waypoint")
+        if (other.tag == "Waypoint")
         {
+
             theAgent.SetDestination(finish.transform.position);
         }
         
