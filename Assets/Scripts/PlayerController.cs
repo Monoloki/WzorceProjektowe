@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
         HandleJump();
         if (hp == 0)
         {
-            Debug.Log("You're looser");
+            //Debug.Log("You're looser");
             lose.SetActive(true);
             Time.timeScale = 0;
         }
@@ -88,7 +88,7 @@ public class PlayerController : MonoBehaviour
         {
             hp--;
             mytext.text = "HEALTH:" + hp;
-            Debug.Log("Player HP:" + hp);
+            //Debug.Log("Player HP:" + hp);
         }
     }
 }

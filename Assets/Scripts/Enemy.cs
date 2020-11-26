@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.tag == "Laser")
         {
             hp--;
-            Debug.Log("Enemy" + hp);
+            //Debug.Log("Enemy" + hp);
         }
     }
 }

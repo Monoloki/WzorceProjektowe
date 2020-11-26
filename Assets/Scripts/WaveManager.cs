@@ -32,9 +32,18 @@ public class WaveManager : MonoBehaviour
 
     public void spawn_wave()
     {
+        int n=0;
+        if (waveNumber == 1 || waveNumber == 3 || waveNumber == 5)
+        {
+            n = 0;
+        }
+        if (waveNumber == 2 || waveNumber == 4 || waveNumber == 6)
+        {
+            n = 2;
+        }
         for (int i = 0; i < spawners.Count; i++)
         {
-            spawn_mob(4,2,i);  //ilosc , id moba
+            spawn_mob(4,n,i);  //ilosc , id moba
         }
     }
 

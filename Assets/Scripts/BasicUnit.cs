@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
 public class BasicUnit : MonoBehaviour
@@ -19,18 +17,17 @@ public class BasicUnit : MonoBehaviour
         {
             theAgent.SetDestination(waypoint1.transform.position);
         }
-
-
     }
-
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Waypoint")
         {
-
             theAgent.SetDestination(finish.transform.position);
         }
-        
+        if (other.tag == "Nexus")
+        {
+            Destroy(gameObject);
+        }
     }
 }
