@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class NexusMeneger : MonoBehaviour
 {
@@ -24,6 +25,10 @@ public class NexusMeneger : MonoBehaviour
             //Debug.Log("You're looser");
             lose.SetActive(true);
             Time.timeScale = 0;
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                SceneManager.LoadScene(1);
+            }
         }
     }
 
