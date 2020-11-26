@@ -143,4 +143,4 @@ MonoBehaviour:
   jumpRate: 1
   force: 2000
   force2: 0.1
-  distance: 100
+  distance: 400
