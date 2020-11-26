@@ -1221,7 +1221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa9b4094820d60746912080c8e506dfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MainSceneName: Vincer
+  MainSceneName: SampleScene
 --- !u!224 &4562484097686228240
 RectTransform:
   m_ObjectHideFlags: 0
