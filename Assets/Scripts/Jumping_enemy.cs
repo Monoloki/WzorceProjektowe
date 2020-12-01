@@ -2,10 +2,11 @@
 
 public class Jumping_enemy : MonoBehaviour
 {
-    GameObject[] player;
+    public GameObject[] player;
     public Rigidbody rb;
     public float nextJump = 0.0F;
-    public float jumpRate = 0.1F;
+    public float jumpRate1;
+    public float jumpRate2;
     public int force;
     public float force2;
     Vector3 direction;
@@ -23,25 +24,27 @@ public class Jumping_enemy : MonoBehaviour
         // idzie do gracza jak jest dalej niż distance
         if (direction.magnitude > distance)
         {
-            //Debug.Log("Idzie");
+            Debug.Log("Idzie");
             direction.Normalize();
-            rb.MovePosition(direction* force2);
+            //rb.MovePosition(player[0].transform.position* Time.deltaTime);
+            jump(0, jumpRate1);
         }
         else
         {
             // skacze na gracza
             Debug.Log("Skacze");
             direction.Normalize();
-            jump();
+            jump(600, jumpRate2);
         }  
     }
 
-    public void jump() 
+    public void jump(float jumpHeight,float jumpRate) 
     {
         if (Time.time > nextJump)
         {
+            
             nextJump = Time.time + jumpRate;      
-            rb.AddForce(direction * force + new Vector3 (0,2,0), ForceMode.Impulse);
+            rb.AddForce(direction * force + new Vector3 (0, jumpHeight, 0), ForceMode.Impulse);
             player = null;
         }
     }
