@@ -5,8 +5,6 @@ public class Enemy : MonoBehaviour
     int maxHealth = 3;
     int currentHealth;
 
-    public WaveManager kills;
-
     void Awake()
     {
         currentHealth = maxHealth;
