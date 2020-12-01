@@ -16,21 +16,26 @@ public class NexusMeneger : MonoBehaviour
 
     void Start()
     {
+        SetHealth();
+    }
+
+    void Update()
+    {
+        bar.transform.LookAt(cam.transform);
+        Health();
+    }
+
+    private void SetHealth()
+    {
         currentHealth = maxHealth;
         slider.maxValue = maxHealth;
         slider.value = maxHealth;
         fill.color = gradient.Evaluate(1f);
     }
 
-    void Update()
-    {
-        Health();
-        bar.transform.LookAt(cam.transform);
-    }
-
     private void Health()
     {
-        if (currentHealth == 0)
+        if (currentHealth <= 0)
         {
             lose.SetActive(true);
             Time.timeScale = 0;

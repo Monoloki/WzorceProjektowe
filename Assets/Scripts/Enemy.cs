@@ -2,8 +2,10 @@
 
 public class Enemy : MonoBehaviour
 {
-    int maxHealth = 4;
+    int maxHealth = 3;
     int currentHealth;
+
+    public WaveManager kills;
 
     void Awake()
     {
@@ -23,7 +25,6 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.tag == "Laser")
         {
             currentHealth--;
-            //Debug.Log("Enemy" + hp);
         }
     }
 }

@@ -6,7 +6,10 @@ public class WaveManager : MonoBehaviour
 {
     public List<GameObject> spawnitems = new List<GameObject>();
     public List<GameObject> spawners = new List<GameObject>();
+    public GameObject[] spawns;
+    public GameObject NextWave;
     Text mytext;
+
     int waveNumber = 0;
     public float nextspawn = 0.0F;
 
@@ -17,9 +20,15 @@ public class WaveManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.N))
+        spawns = GameObject.FindGameObjectsWithTag("Enemy");
+        if (spawns.Length == 0)
         {
-            next_wave();
+            NextWave.SetActive(true);
+            if (Input.GetKeyDown(KeyCode.N))
+            {
+                NextWave.SetActive(false);
+                next_wave();
+            }
         }
     }
 
@@ -32,27 +41,25 @@ public class WaveManager : MonoBehaviour
 
     public void spawn_wave()
     {
-        int n=0;
-        if (waveNumber == 1 || waveNumber == 3 || waveNumber == 5)
+        if (waveNumber == 1 || waveNumber == 2)
         {
-            n = 0;
+            spawn_mob(waveNumber + 1,2); // ilosc, typ
         }
-        if (waveNumber == 2 || waveNumber == 4 || waveNumber == 6)
+        if (waveNumber >= 3)
         {
-            n = 2;
+            spawn_mob(waveNumber,2); // ilosc typ
+            spawn_mob(waveNumber - 2,0); // ilosc typ
         }
+    }
+
+    public void spawn_mob(int amount, int number)
+    {
         for (int i = 0; i < spawners.Count; i++)
         {
-            spawn_mob(4,n,i);  //ilosc , id moba
-        }
-    }
-
-    public void spawn_mob(int amount, int number, int a)
-    {
             for (int j = 0; j < amount; j++)
             {
-                Instantiate(spawnitems[number], spawners[a].transform.position + new Vector3(0, 0, -10), spawners[a].transform.rotation);
-            }       
+                Instantiate(spawnitems[number], spawners[i].transform.position + new Vector3(0, 0, -10), spawners[i].transform.rotation);
+            }
+        }        
     }
-
 }

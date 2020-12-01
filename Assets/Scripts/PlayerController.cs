@@ -19,9 +19,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        currentHealth = maxHealth;
-        slider.maxValue = maxHealth;
-        slider.value = maxHealth;
+        SetHealth();
         Time.timeScale = 1;
     }
 
@@ -32,6 +30,13 @@ public class PlayerController : MonoBehaviour
         HandleVerticalRotationl();
         HandleJump();
         Health();
+    }
+
+    private void SetHealth()
+    {
+        currentHealth = maxHealth;
+        slider.maxValue = maxHealth;
+        slider.value = maxHealth;
     }
 
     private void Health()
