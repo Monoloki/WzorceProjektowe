@@ -48,5 +48,4 @@ public class Jumping_enemy : MonoBehaviour
             player = null;
         }
     }
-
 }
