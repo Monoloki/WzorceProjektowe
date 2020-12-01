@@ -2,11 +2,17 @@
 
 public class Enemy : MonoBehaviour
 {
-    int hp = 4;
+    int maxHealth = 4;
+    int currentHealth;
+
+    void Awake()
+    {
+        currentHealth = maxHealth;
+    }
 
     void Update()
     {
-        if (hp == 0)
+        if (currentHealth == 0)
         {
             Destroy(gameObject);
         }
@@ -16,7 +22,7 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.tag == "Laser")
         {
-            hp--;
+            currentHealth--;
             //Debug.Log("Enemy" + hp);
         }
     }

@@ -6,19 +6,22 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] Camera cam;
     [SerializeField] Rigidbody rb;
-    public Text mytext;
     public GameObject lose;
+    public Slider slider;
 
     public float speed = 8;
     public float rotationSpeed = 2;
     public float jumpHeight = 6;
 
-    int hp = 15;
+    public int maxHealth = 15;
+    int currentHealth;
 
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        mytext.text = "HEALTH:" + hp;
+        currentHealth = maxHealth;
+        slider.maxValue = maxHealth;
+        slider.value = maxHealth;
         Time.timeScale = 1;
     }
 
@@ -28,12 +31,13 @@ public class PlayerController : MonoBehaviour
         HandleHorizontalRotationl();
         HandleVerticalRotationl();
         HandleJump();
-        Lose();
+        Health();
     }
 
-    private void Lose()
+    private void Health()
     {
-        if (hp == 0)
+        slider.value = currentHealth;
+        if (currentHealth <= 0)
         {
             //Debug.Log("You're looser");
             lose.SetActive(true);
@@ -97,9 +101,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            hp--;
-            mytext.text = "HEALTH:" + hp;
-            //Debug.Log("Player HP:" + hp);
+            currentHealth--;
         }
     }
 }

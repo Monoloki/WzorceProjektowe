@@ -4,25 +4,34 @@ using UnityEngine.SceneManagement;
 
 public class NexusMeneger : MonoBehaviour
 {
-    public Text mytext;
     public GameObject lose;
-    int hp = 20;
+    public GameObject bar;
+    public GameObject cam;
+    public Slider slider;
+    public Gradient gradient;
+    public Image fill;
+
+    public int maxHealth = 20;
+    int currentHealth;
 
     void Start()
     {
-        mytext.text = "NEXUS HEALTH:" + hp;
+        currentHealth = maxHealth;
+        slider.maxValue = maxHealth;
+        slider.value = maxHealth;
+        fill.color = gradient.Evaluate(1f);
     }
 
     void Update()
     {
-        Lose();
+        Health();
+        bar.transform.LookAt(cam.transform);
     }
 
-    private void Lose()
+    private void Health()
     {
-        if (hp == 0)
+        if (currentHealth == 0)
         {
-            //Debug.Log("You're looser");
             lose.SetActive(true);
             Time.timeScale = 0;
             if (Input.GetKeyDown(KeyCode.R))
@@ -36,8 +45,9 @@ public class NexusMeneger : MonoBehaviour
     {
         if (other.tag == "Enemy")
         {
-            hp--;
-            mytext.text = "NEXUS HEALTH:" + hp;
+            currentHealth--;
+            slider.value = currentHealth;
+            fill.color = gradient.Evaluate(slider.normalizedValue);
             Debug.Log("Kolizja z nexusem");
         }
     }
