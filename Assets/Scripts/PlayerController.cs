@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Camera cam;
     [SerializeField] Rigidbody rb;
     public GameObject lose;
+    public GameObject pause;
     public Slider slider;
 
     public float speed = 8;
@@ -15,6 +16,7 @@ public class PlayerController : MonoBehaviour
 
     public int maxHealth = 15;
     int currentHealth;
+    bool paused = true;
 
     private void Start()
     {
@@ -30,6 +32,23 @@ public class PlayerController : MonoBehaviour
         HandleVerticalRotationl();
         HandleJump();
         Health();
+        Pause();
+    }
+
+    private void Pause()
+    {
+        if (Input.GetKeyUp(KeyCode.Escape) && paused == true)
+        {
+            pause.SetActive(true);
+            Time.timeScale = 0;
+            paused = false;
+        }
+        else if (Input.GetKeyUp(KeyCode.Escape) && paused == false)
+        {
+            pause.SetActive(false);
+            Time.timeScale = 1;
+            paused = true;
+        }
     }
 
     private void SetHealth()
